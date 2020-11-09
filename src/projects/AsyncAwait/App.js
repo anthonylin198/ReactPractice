@@ -20,15 +20,19 @@ const App = () => {
 const UserInput = ({ updateFollowers }) => {
   const [input, updateInput] = useState("");
   async function getFollowers() {
-    let githubResponse = await fetch(
-      `https://api.github.com/users/${input}/followers`
-    );
-    let newFollowers = await githubResponse.json();
-    if (githubResponse.status === 200) {
-      updateFollowers(newFollowers);
-    } else {
-      console.error("this is an error");
-      updateFollowers([{ login: "not a valid user" }]);
+    try {
+      let githubResponse = await fetch(
+        `https://api.github.com/users/${input}/followers`
+      );
+      let newFollowers = await githubResponse.json();
+      if (githubResponse.status === 200) {
+        updateFollowers(newFollowers);
+      } else {
+        console.error("this is an error");
+        updateFollowers([{ login: "not a valid user" }]);
+      }
+    } catch (err) {
+      console.error(err);
     }
   }
   return (
