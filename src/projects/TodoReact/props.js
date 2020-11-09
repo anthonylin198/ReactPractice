@@ -11,7 +11,6 @@ function App() {
   );
 }
 
-// create component for the userinput
 function UserInput({ updateTodoList, todoList }) {
   const [input, updateInput] = useState();
   function submit() {
@@ -30,9 +29,7 @@ function UserInput({ updateTodoList, todoList }) {
 
 // create component for the body
 function List({ todoList, updateTodoList }) {
-  // create a map of the element
   const listItems = todoList.map((item, i) => {
-    console.log(i);
     return (
       <ListItem
         item={item}
