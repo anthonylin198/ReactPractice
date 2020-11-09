@@ -5,14 +5,9 @@ import "./App.css";
 
 const App = () => {
   const [followers, updateFollowers] = useState([]);
-  const [input, updateInput] = useState("");
   return (
     <div className="container">
-      <UserInput
-        input={input}
-        updateInput={updateInput}
-        updateFollowers={updateFollowers}
-      />
+      <UserInput updateFollowers={updateFollowers} />
       <ListOfFollowers
         followers={followers}
         updateFollowers={updateFollowers}
@@ -21,14 +16,20 @@ const App = () => {
   );
 };
 
-const UserInput = ({ input, updateInput, updateFollowers }) => {
-  // async function that will
+// async Section
+const UserInput = ({ updateFollowers }) => {
+  const [input, updateInput] = useState("");
   async function getFollowers() {
     let githubResponse = await fetch(
       `https://api.github.com/users/${input}/followers`
     );
     let newFollowers = await githubResponse.json();
-    updateFollowers(newFollowers);
+    if (githubResponse.status === 200) {
+      updateFollowers(newFollowers);
+    } else {
+      console.error("this is an error");
+      updateFollowers([{ login: "not a valid user" }]);
+    }
   }
   return (
     <div>
@@ -44,7 +45,7 @@ const ListOfFollowers = ({ followers, updateFollowers }) => {
   });
   return (
     <div>
-      <h1>List</h1>
+      <h1>Followers</h1>
       {followersArray}
     </div>
   );
