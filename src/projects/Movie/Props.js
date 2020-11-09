@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import "./App.css";
 
+/*
+
+Brute Force: Since the array is being held in the parent, just updating 1 value in the array
+will lead to the entire component rerendering. We can potentially solve this issue with redux
+
+*/
+
 // we have an array of tasks to complete
 const tasksList = [
   { title: 1, complete: false },
@@ -42,8 +49,8 @@ const Summary = ({ tasks }) => {
   let completedTasks = tasksComplete(tasks);
   return (
     <div>
-      <h1>Tasks Complete: {completedTasks}</h1>
-      <h2>Total Tasks: {tasks.length}</h2>
+      <h1>Total Tasks: {tasks.length}</h1>
+      <h2>Tasks Complete: {completedTasks}</h2>
       <h2>
         Tasks Complete: {((completedTasks / tasks.length) * 100).toFixed(2)} %
       </h2>
