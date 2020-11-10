@@ -4,12 +4,28 @@ import React from "react";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { list: [1, 2, 3, 4] };
+    this.state = { input: "", list: [1, 2, 3, 4] };
+    this.handleInput = this.handleInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleInput(e) {
+    this.setState({ input: e.target.value });
+  }
+  handleSubmit(input) {
+    const newList = this.state.list.slice();
+    console.log(newList);
+    newList.push(input);
+    this.setState({ input, list: newList });
   }
   render() {
     return (
       <div className="container">
-        <UserInput />
+        <UserInput
+          list={this.state.list}
+          input={this.state.input}
+          handleInput={this.handleInput}
+          handleSubmit={this.handleSubmit}
+        />
         <List list={this.state.list} />
       </div>
     );
@@ -17,20 +33,14 @@ class App extends React.Component {
 }
 
 class UserInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleInput = this.handleInput.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = { input: "" };
-  }
-  // create function to handle typing
-  handleInput(e) {
-    this.setState({ input: e.target.value });
-  }
   render() {
+    console.log(this.props);
     return (
       <div>
-        <h1>User Input</h1>
+        <input onChange={(e) => this.props.handleInput(e)}></input>
+        <button onClick={() => this.props.handleSubmit(this.props.input)}>
+          Submit
+        </button>
       </div>
     );
   }
@@ -38,7 +48,6 @@ class UserInput extends React.Component {
 
 class List extends React.Component {
   render() {
-    console.log(this.props.list);
     return (
       <div>
         <h1>List</h1>
@@ -46,5 +55,7 @@ class List extends React.Component {
     );
   }
 }
+
+// create a listItem
 
 export default App;
