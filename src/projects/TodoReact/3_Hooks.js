@@ -32,9 +32,7 @@ function App() {
 function UserInput({ updateTodoList, todoList }) {
   const [input, updateInput] = useState("");
   function submit() {
-    const newTodo = todoList.slice();
-    newTodo.push(input);
-    updateTodoList(newTodo);
+    updateTodoList([...todoList, input]);
     updateInput("");
   }
 
