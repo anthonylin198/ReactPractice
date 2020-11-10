@@ -68,7 +68,6 @@ function List({ todoList, updateTodoList }) {
 
 function ListItem({ itemNum, item, updateTodoList, todoList }) {
   const [itemChange, updateItemChange] = useState("");
-  console.log(itemChange);
 
   function deleteItem() {
     const newTodoList = todoList.slice();

@@ -11,8 +11,9 @@ export const decrement = () => {
   };
 };
 
-export const addItem = () => {
+export const addItem = (input) => {
   return {
     type: "ADDITEM",
+    payload: input,
   };
 };
