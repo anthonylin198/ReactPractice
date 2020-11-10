@@ -51,10 +51,12 @@ function ListItem({ itemNum, item, updateTodoList, todoList }) {
   }
 
   return (
-    <div>
-      <li>{item}</li>
-      <button onClick={() => deleteItem()}>Delete Button</button>
-      <button>Update Button</button>
+    <div className="itemContainer">
+      <span className="item">{item}</span>
+      <div className="buttonContainer">
+        <button onClick={() => deleteItem()}>X</button>
+        <button>Update</button>
+      </div>
     </div>
   );
 }
