@@ -27,8 +27,7 @@ const UserInput = () => {
   const counter = useSelector((state) => state.counter);
   const isLogged = useSelector((state) => state.isLogged);
   // getting hte state
-  const list = useSelector((state) => state.list);
-  console.log(list);
+
   const dispatch = useDispatch();
   return (
     <div>
@@ -43,11 +42,12 @@ const UserInput = () => {
 };
 
 function List() {
-  return (
-    <div>
-      <h1> List</h1>
-    </div>
-  );
+  const listItems = useSelector((state) => state.list);
+
+  const listArr = listItems.map((item, i) => {
+    return <div key={i}>{item}</div>;
+  });
+  return <div>{listArr}</div>;
 }
 
 export default App;
