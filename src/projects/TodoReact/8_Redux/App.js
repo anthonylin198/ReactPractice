@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import allReducers from "./reducers";
 import { useSelector, useDispatch } from "react-redux";
-import { increment } from "./actions";
+import { increment, decrement, addItem } from "./actions";
 
 const store = createStore(
   allReducers,
@@ -30,8 +30,9 @@ const UserInput = () => {
   return (
     <div>
       <input></input>
-      <button>submit</button>
+      <button onClick={() => dispatch(addItem())}>submit</button>
       <button onClick={() => dispatch(increment())}>+</button>
+      <button onClick={() => dispatch(decrement())}>-</button>
       <h1>{counter}</h1>
       {isLogged ? <h3>Valuable info shouldn't see</h3> : ""}
     </div>
