@@ -2,8 +2,10 @@ loadEvents();
 // load every event in the page
 function loadEvents() {
   document.querySelector("form").addEventListener("submit", submit);
+  document.getElementById("clear").addEventListener("click", clearList);
+  document.querySelector("ul").addEventListener("click", deleteOrTick);
 }
-// subit data function
+// submit data function
 function submit(e) {
   e.preventDefault();
   let input = document.querySelector("input");
@@ -20,27 +22,11 @@ function addTask(task) {
   document.querySelector(".tasksBoard").style.display = "block";
 }
 
-loadEvents();
-// load every event in the page
-function loadEvents() {
-  document.querySelector("form").addEventListener("submit", submit);
-  // recently added
-  document.getElementById("clear").addEventListener("click", clearList);
-}
-
+// clear the LIST
 function clearList(e) {
-  // setting the ul innerHML to an empty string
   let ul = (document.querySelector("ul").innerHTML = "");
 }
 
-loadEvents();
-// load every event in the page
-function loadEvents() {
-  document.querySelector("form").addEventListener("submit", submit);
-  document.getElementById("clear").addEventListener("click", clearList);
-  // recently added
-  document.querySelector("ul").addEventListener("click", deleteOrTick);
-}
 // deleteTick
 function deleteOrTick(e) {
   if (e.target.className == "delete") deleteTask(e);
