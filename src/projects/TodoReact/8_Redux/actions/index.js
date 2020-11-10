@@ -19,4 +19,10 @@ export const addItem = (input) => {
   };
 };
 
-//
+//delete item
+export const deleteItem = (index) => {
+  return {
+    type: "DELETEITEM",
+    payload: index,
+  };
+};

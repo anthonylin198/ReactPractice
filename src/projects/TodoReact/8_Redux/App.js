@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import allReducers from "./reducers";
 import { useSelector, useDispatch } from "react-redux";
-import { addItem } from "./actions";
+import { addItem, deleteItem } from "./actions";
 
 const store = createStore(
   allReducers,
@@ -41,19 +41,21 @@ function List() {
   const listItems = useSelector((state) => state.list);
 
   const listArr = listItems.map((item, i) => {
-    return <ListItem item={item} key={i} />;
+    return <ListItem item={item} index={i} key={i} />;
   });
   return <div>{listArr}</div>;
 }
 
-function ListItem({ item }) {
+function ListItem({ item, index }) {
+  // const listItems = useSelector((state) => state.list);
+  const dispatch = useDispatch();
   return (
     <div className="itemContainer">
       <span className="item">{item}</span>
       <div>
         <input></input>
         <button>Update</button>
-        <button>X</button>
+        <button onClick={() => dispatch(deleteItem(index))}>X</button>
       </div>
     </div>
   );
