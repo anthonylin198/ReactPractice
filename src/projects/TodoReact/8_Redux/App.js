@@ -2,9 +2,9 @@ import React from "react";
 import "../App.css";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
+import allReducers from "./reducers";
 import { useSelector, useDispatch } from "react-redux";
 import { increment } from "./actions";
-import allReducers from "./reducers";
 
 const store = createStore(
   allReducers,
