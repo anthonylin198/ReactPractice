@@ -26,6 +26,9 @@ function App() {
 const UserInput = () => {
   const counter = useSelector((state) => state.counter);
   const isLogged = useSelector((state) => state.isLogged);
+  // getting hte state
+  const list = useSelector((state) => state.list);
+  console.log(list);
   const dispatch = useDispatch();
   return (
     <div>
