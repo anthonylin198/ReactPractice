@@ -17,6 +17,16 @@ class App extends React.Component {
 }
 
 class UserInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = { input: "" };
+  }
+  // create function to handle typing
+  handleInput(e) {
+    this.setState({ input: e.target.value });
+  }
   render() {
     return (
       <div>
