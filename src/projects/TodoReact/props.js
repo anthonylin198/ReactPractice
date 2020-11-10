@@ -14,7 +14,6 @@
   3) List: Prop drill down list of items, and update list of items, map out item component
   4) Item: Each item will have the value (from the list array), an input to update, (hold state) Delete button
 
-      
 */
 
 import "./App.css";
