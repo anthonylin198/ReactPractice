@@ -11,9 +11,12 @@ export const decrement = () => {
   };
 };
 
+// additem and delete
 export const addItem = (input) => {
   return {
     type: "ADDITEM",
     payload: input,
   };
 };
+
+//
