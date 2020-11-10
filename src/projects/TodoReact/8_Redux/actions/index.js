@@ -26,3 +26,13 @@ export const deleteItem = (index) => {
     payload: index,
   };
 };
+
+// update
+export const updateItem = (index, item) => {
+  console.log("here in the item", item);
+  return {
+    type: "UPDATEITEM",
+    index,
+    item,
+  };
+};

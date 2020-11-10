@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import allReducers from "./reducers";
 import { useSelector, useDispatch } from "react-redux";
-import { addItem, deleteItem } from "./actions";
+import { addItem, deleteItem, updateItem } from "./actions";
 
 const store = createStore(
   allReducers,
@@ -47,14 +47,19 @@ function List() {
 }
 
 function ListItem({ item, index }) {
-  // const listItems = useSelector((state) => state.list);
+  // store the value of the list item
+  const [input, updateInput] = useState("");
+  console.log(input);
+  // have an action that will update the value in listItem
   const dispatch = useDispatch();
   return (
     <div className="itemContainer">
       <span className="item">{item}</span>
       <div>
-        <input></input>
-        <button>Update</button>
+        <input onChange={(e) => updateInput(e.target.value)}></input>
+        <button onClick={() => dispatch(updateItem(index, input))}>
+          Update
+        </button>
         <button onClick={() => dispatch(deleteItem(index))}>X</button>
       </div>
     </div>

@@ -6,6 +6,9 @@ const listReducer = (state = [], action) => {
     case "DELETEITEM":
       newState.splice(action.payload, 1);
       return newState;
+    case "UPDATEITEM":
+      newState[action.index] = action.item;
+      return newState;
     default:
       return state;
   }
