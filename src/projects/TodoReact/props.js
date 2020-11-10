@@ -1,3 +1,22 @@
+/*
+
+
+                App
+
+   UserInput                List
+
+                     Item Item Item Item
+
+
+  State: React Hooks
+  1) Hold array of list of items in the App component
+  2) UserInput: Needs to hold state for text input, and needs the updateListItems prop drilled from App for onSubmit
+  3) List: Prop drill down list of items, and update list of items, map out item component
+  4) Item: Each item will have the value (from the list array), an input to update, (hold state) Delete button
+
+      
+*/
+
 import "./App.css";
 import React, { useState } from "react";
 
