@@ -12,16 +12,21 @@ function App() {
 }
 
 function UserInput({ updateTodoList, todoList }) {
-  const [input, updateInput] = useState();
+  const [input, updateInput] = useState("");
   function submit() {
     const newTodo = todoList.slice();
     newTodo.push(input);
     updateTodoList(newTodo);
+    updateInput("");
   }
 
   return (
     <div>
-      <input onChange={(e) => updateInput(e.target.value)} type="text"></input>
+      <input
+        value={input}
+        onChange={(e) => updateInput(e.target.value)}
+        type="text"
+      ></input>
       <button onClick={(e) => submit()}>Submit</button>
     </div>
   );
@@ -44,18 +49,31 @@ function List({ todoList, updateTodoList }) {
 }
 
 function ListItem({ itemNum, item, updateTodoList, todoList }) {
+  const [itemChange, updateItemChange] = useState("");
+  console.log(itemChange);
+
   function deleteItem() {
     const newTodoList = todoList.slice();
     newTodoList.splice(itemNum, 1);
     updateTodoList(newTodoList);
+  }
+  function updateItem() {
+    const newTodoList = todoList.slice();
+    newTodoList[itemNum] = itemChange;
+    updateTodoList(newTodoList);
+    updateItemChange("");
   }
 
   return (
     <div className="itemContainer">
       <span className="item">{item}</span>
       <div className="buttonContainer">
+        <input
+          value={itemChange}
+          onChange={(e) => updateItemChange(e.target.value)}
+        ></input>
+        <button onClick={() => updateItem()}>Update</button>
         <button onClick={() => deleteItem()}>X</button>
-        <button>Update</button>
       </div>
     </div>
   );
