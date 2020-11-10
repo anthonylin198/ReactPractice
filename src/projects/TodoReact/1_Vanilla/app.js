@@ -1,11 +1,11 @@
-loadEvents();
 // load every event in the page
 function loadEvents() {
   document.querySelector("form").addEventListener("submit", submit);
   document.getElementById("clear").addEventListener("click", clearList);
   document.querySelector("ul").addEventListener("click", deleteOrTick);
 }
-// submit data function
+loadEvents();
+//! add to todo list
 function submit(e) {
   e.preventDefault();
   let input = document.querySelector("input");
@@ -13,7 +13,6 @@ function submit(e) {
   input.value = "";
 }
 
-// add tasks
 function addTask(task) {
   let ul = document.querySelector("ul");
   let li = document.createElement("li");
@@ -22,12 +21,12 @@ function addTask(task) {
   document.querySelector(".tasksBoard").style.display = "block";
 }
 
-// clear the LIST
+//! Clear the List
 function clearList(e) {
   let ul = (document.querySelector("ul").innerHTML = "");
 }
 
-// deleteTick
+//! Delete or tick
 function deleteOrTick(e) {
   if (e.target.className == "delete") deleteTask(e);
   else {
