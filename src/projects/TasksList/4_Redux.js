@@ -25,14 +25,12 @@ const tasksList = [
   { title: 12, complete: false },
 ];
 
-// Reducers setup and combine reducers
+// todo: Figure out how to change state so that useSelector will work
 const taskReducer = (state = tasksList, action) => {
   const newState = [...state];
   console.log(newState);
   switch (action.type) {
     case "COMPLETE":
-      // console.log(state[action.index]);
-      Object.assign(state[action.index], false);
       console.log(newState[action.index]);
       if (newState[action.index].complete === true) {
         newState[action.index].complete = false;
