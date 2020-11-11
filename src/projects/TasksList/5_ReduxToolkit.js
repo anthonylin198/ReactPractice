@@ -26,7 +26,7 @@ const tasksList = [
 
 // creating the store
 const {
-  actions: { complete, notComplete },
+  actions: { complete },
   reducer,
 } = createSlice({
   name: "task",
@@ -51,7 +51,7 @@ const store = configureStore(
 const mapStateTask = (state, props) => {
   return { task: state[props.index] };
 };
-const mapDispatch = { complete, notComplete }; // from the actions in reducer
+const mapDispatch = { complete }; // from the actions in reducer
 
 const App = () => {
   return (
@@ -67,7 +67,7 @@ const App = () => {
 const Summary = () => {
   return (
     <div>
-      <h1>Total Tasks: </h1>
+      <h1>Total Tasks: here</h1>
       <h2> Tasks Complete: </h2>
     </div>
   );
@@ -98,7 +98,7 @@ const Card = connect(
 
   return (
     <div className="card">
-      <h3>card</h3>
+      <h3>{task.title}</h3>
       <h3>Status: {completed} </h3>
       <button onClick={() => complete(index)}>{buttonTitle}</button>
     </div>
