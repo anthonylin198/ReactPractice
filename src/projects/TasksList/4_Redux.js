@@ -6,8 +6,8 @@ install reduxjs/toolki and react-redux
 
 import React, { useState } from "react";
 import "./App.css";
-import { useSelector, Provider, useDispatch } from "react-redux";
-import { createStore } from "redux";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { connect, Provider } from "react-redux";
 
 const tasksList = [
   { title: 1, complete: false },
@@ -24,31 +24,32 @@ const tasksList = [
   { title: 12, complete: false },
 ];
 
-// create the reducer with initial state
-const taskReducer = (state = tasksList, action) => {
-  switch (action.type) {
-    case "COMPLETE": {
-      const newState = state.slice();
-      newState[action.payload].complete = true;
-      return newState;
-    }
-    default:
-      return state;
-  }
-};
+// creating the store
+const {
+  actions: { complete },
+  reducer,
+} = createSlice({
+  name: "task",
+  initialState: tasksList,
+  reducers: {
+    complete: (state, action) => {
+      state[action.payload].complete = true;
+    },
+  },
+});
 
-// create action
-const completeTask = (index) => {
-  return {
-    type: "COMPLETE",
-    payload: index,
-  };
-};
-
-const store = createStore(
-  taskReducer,
+const store = configureStore(
+  { reducer },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+// map State to Movie - so then we just change one movie
+const mapStateTask = (state, props) => {
+  console.log(state);
+  console.log(props.index);
+  return { task: state[props.index] };
+};
+const mapDispatch = { complete }; // from the action
 
 const App = () => {
   return (
@@ -64,29 +65,33 @@ const App = () => {
 const Summary = () => {
   return (
     <div>
-      <h1>Total Tasks: </h1>
+      <h1>Total Tasks: here</h1>
       <h2> Tasks Complete: </h2>
     </div>
   );
 };
 
 const CardsContainer = () => {
-  const cards = useSelector((state) => state);
+  // const cards = useSelector((state) => state);
+  const cards = tasksList;
   const cardsMap = cards.map((card, i) => {
     return <Card key={i} index={i} title={card.title} />;
   });
-  const dispatch = useDispatch();
   return <div className="cardsContainer">{cardsMap}</div>;
 };
 
 // create a card
-const Card = ({ index, title }) => {
+const Card = connect(
+  mapStateTask,
+  mapDispatch
+)(({ task, complete }) => {
+  console.log("here", task);
   return (
     <div className="card">
-      <h3>{title}</h3>
-      <h3>Status: </h3>
-      <button>Select</button>
+      <h3>card</h3>
+      <h3>Status: {task.complete} </h3>
+      <button onClick={() => complete(task.title)}>complete</button>
     </div>
   );
-};
+});
 export default App;
