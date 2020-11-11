@@ -25,36 +25,26 @@ const tasksList = [
   { title: 12, complete: false },
 ];
 
-// Reducer
-const taskReducer = (state = tasksList, action) => {
-  console.log("this is state", state);
-  const newState = [...state];
-  Object.assign(state, newState);
-  console.log(newState);
-  switch (action.type) {
-    case "COMPLETE":
-      if (newState[action.index].complete === true) {
-        newState[action.index].complete = false;
+// creating the store
+const {
+  actions: { complete },
+  reducer,
+} = createSlice({
+  name: "task",
+  initialState: tasksList,
+  reducers: {
+    complete: (state, action) => {
+      if (state[action.payload].complete === true) {
+        state[action.payload].complete = false;
       } else {
-        newState[action.index].complete = true;
+        state[action.payload].complete = true;
       }
+    },
+  },
+});
 
-      return newState;
-    default:
-      return state;
-  }
-};
-
-// actions
-const completeTask = (index) => {
-  return {
-    type: "COMPLETE",
-    index,
-  };
-};
-// store
-const store = createStore(
-  taskReducer,
+const store = configureStore(
+  { reducer },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
@@ -89,7 +79,7 @@ const CardsContainer = () => {
 
 const Card = React.memo(({ index, title }) => {
   const card = useSelector((state) => state[index]);
-  console.log("here", card);
+  console.log(card);
   let completed = "not complete";
   if (card.complete) {
     completed = "complete";
@@ -103,9 +93,7 @@ const Card = React.memo(({ index, title }) => {
     <div className="card">
       <h3>{title}</h3>
       <h3>{completed}</h3>
-      <button onClick={() => dispatch(completeTask(index))}>
-        {buttonLabel}
-      </button>
+      <button onClick={() => dispatch(complete(index))}>{buttonLabel}</button>
     </div>
   );
 });
