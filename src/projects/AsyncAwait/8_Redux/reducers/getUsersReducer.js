@@ -17,10 +17,9 @@ export const notesReducer = (state = initialState, action) => {
 };
 
 // async thunk action for user
-export const getUsersReducer = () => async (dispatch, getState) => {
-  console.log("here");
+export const getUsersReducer = (input) => async (dispatch, getState) => {
   const notes = await fetch(
-    `https://api.github.com/users/anthonylin198/followers`
+    `https://api.github.com/users/${input}/followers`
   ).then((res) => res.json());
   dispatch(getFollowers(notes));
 };

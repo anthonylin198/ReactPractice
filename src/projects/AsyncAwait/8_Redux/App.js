@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App.css";
 import allReducers from "./reducers";
 import { Provider, useSelector, useDispatch } from "react-redux";
@@ -28,11 +28,12 @@ const App = () => {
 };
 
 const UserInput = () => {
+  const [input, updateInput] = useState("");
   const dispatch = useDispatch();
   return (
     <div>
-      <input></input>
-      <button onClick={() => dispatch(getUsersReducer())}>enter</button>
+      <input onChange={(e) => updateInput(e.target.value)}></input>
+      <button onClick={() => dispatch(getUsersReducer(input))}>enter</button>
       <button onClick={() => dispatch(addOne())}>Test</button>
     </div>
   );
@@ -41,7 +42,6 @@ const UserInput = () => {
 const List = () => {
   // get the list
   const followers = useSelector((state) => state.notesReducer.followers);
-  console.log("here in ", followers);
 
   const followersArr = followers.map((follower, i) => {
     return <div key={i}>{follower.login}</div>;
