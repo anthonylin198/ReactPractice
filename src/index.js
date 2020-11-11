@@ -8,9 +8,10 @@ import ReactDOM from "react-dom";
 
 // todo: TASKLIST
 // import App from "./projects/TasksList/3_Props";
-import App from "./projects/TasksList/4_Redux";
+// import App from "./projects/TasksList/4_Redux";
 // import App from "./projects/TasksList/5_ReduxToolkit";
 // import App from "./projects/TasksList/6_ReduxToolkitSelector";
+import App from "./projects/TasksList/7_Practice";
 
 // todo: ASYNC APP
 // import App from "./projects/AsyncAwait/App";

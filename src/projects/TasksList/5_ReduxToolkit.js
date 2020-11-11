@@ -24,7 +24,7 @@ const tasksList = [
   { title: 12, complete: false },
 ];
 
-// creating the store
+// creating one reducer
 const {
   actions: { complete },
   reducer,
