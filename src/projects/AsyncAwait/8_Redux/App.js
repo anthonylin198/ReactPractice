@@ -40,15 +40,15 @@ const UserInput = () => {
 
 const List = () => {
   // get the list
-  const followers = useSelector((state) => state.followers);
+  const followers = useSelector((state) => state.notesReducer.followers);
   console.log("here in ", followers);
 
-  // const followersArr = followers.map((follower, i) => {
-  //   return <div key={i}>{follower}</div>;
-  // });
+  const followersArr = followers.map((follower, i) => {
+    return <div key={i}>{follower.login}</div>;
+  });
   return (
     <div>
-      <div>here</div>
+      <div>{followersArr}</div>
     </div>
   );
 };

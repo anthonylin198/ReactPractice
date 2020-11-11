@@ -6,11 +6,9 @@ const initialState = {
 export const notesReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GETFOLLOWERS": {
-      console.log("here");
-      return { ...state, followers: [action.payload] };
+      return { ...state, followers: action.payload };
     }
     case "ADDONE": {
-      console.log("here");
       return state;
     }
     default:
