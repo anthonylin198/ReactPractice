@@ -1,4 +1,3 @@
-import { GETFOLLOWERS } from "../actions/actions";
 import { getFollowers } from "../actions/actions";
 
 const initialState = {
@@ -6,8 +5,13 @@ const initialState = {
 };
 export const notesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GETFOLLOWERS: {
+    case "GETFOLLOWERS": {
+      console.log("here");
       return { ...state, followers: [action.payload] };
+    }
+    case "ADDONE": {
+      console.log("here");
+      return state;
     }
     default:
       return state;
