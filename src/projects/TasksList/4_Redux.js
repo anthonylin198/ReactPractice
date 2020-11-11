@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import "./App.css";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { Provider, useSelector, useDispatch } from "react-redux";
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 
 const tasksList = [
   { title: 1, complete: false },
@@ -25,14 +25,15 @@ const tasksList = [
   { title: 12, complete: false },
 ];
 
-// Reducer
+// Reducers setup and combine reducers
 const taskReducer = (state = tasksList, action) => {
-  console.log("this is state", state);
   const newState = [...state];
-  Object.assign(state, newState);
   console.log(newState);
   switch (action.type) {
     case "COMPLETE":
+      // console.log(state[action.index]);
+      Object.assign(state[action.index], false);
+      console.log(newState[action.index]);
       if (newState[action.index].complete === true) {
         newState[action.index].complete = false;
       } else {
@@ -45,6 +46,20 @@ const taskReducer = (state = tasksList, action) => {
   }
 };
 
+const counterReducer = (state = 0, action) => {
+  switch (action.type) {
+    case "ADD":
+      return;
+    default:
+      return state;
+  }
+};
+
+const allReducers = combineReducers({
+  taskReducer: taskReducer,
+  counterReducer: counterReducer,
+});
+
 // actions
 const completeTask = (index) => {
   return {
@@ -54,7 +69,7 @@ const completeTask = (index) => {
 };
 // store
 const store = createStore(
-  taskReducer,
+  allReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
@@ -88,7 +103,7 @@ const CardsContainer = () => {
 };
 
 const Card = React.memo(({ index, title }) => {
-  const card = useSelector((state) => state[index]);
+  const card = useSelector((state) => state.taskReducer[index]);
   console.log("here", card);
   let completed = "not complete";
   if (card.complete) {

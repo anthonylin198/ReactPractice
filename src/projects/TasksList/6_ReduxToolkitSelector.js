@@ -35,6 +35,7 @@ const {
   reducers: {
     complete: (state, action) => {
       if (state[action.payload].complete === true) {
+        // directly manipulate, takes care under hood
         state[action.payload].complete = false;
       } else {
         state[action.payload].complete = true;
