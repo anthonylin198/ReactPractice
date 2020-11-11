@@ -82,7 +82,7 @@ const CardsContainer = () => {
   return <div className="cardsContainer">{cardsMap}</div>;
 };
 
-const Card = ({ index, title }) => {
+const Card = React.memo(({ index, title }) => {
   const card = useSelector((state) => state);
   let completed = "not complete";
   if (card[index].complete) {
@@ -102,5 +102,5 @@ const Card = ({ index, title }) => {
       </button>
     </div>
   );
-};
+});
 export default App;
