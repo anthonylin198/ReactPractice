@@ -67,7 +67,7 @@ const App = () => {
 const Summary = () => {
   return (
     <div>
-      <h1>Total Tasks: here</h1>
+      <h1>Total Tasks: </h1>
       <h2> Tasks Complete: </h2>
     </div>
   );
