@@ -91,11 +91,16 @@ const Card = connect(
   if (task.complete) {
     completed = "complete";
   }
+  let buttonTitle = "Mark As Complete";
+  if (task.complete) {
+    buttonTitle = "Mark As Not Complete";
+  }
+
   return (
     <div className="card">
       <h3>card</h3>
       <h3>Status: {completed} </h3>
-      <button onClick={() => complete(index)}>complete</button>
+      <button onClick={() => complete(index)}>{buttonTitle}</button>
     </div>
   );
 });
