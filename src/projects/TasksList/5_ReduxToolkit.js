@@ -26,14 +26,18 @@ const tasksList = [
 
 // creating the store
 const {
-  actions: { complete },
+  actions: { complete, notComplete },
   reducer,
 } = createSlice({
   name: "task",
   initialState: tasksList,
   reducers: {
     complete: (state, action) => {
-      state[action.payload].complete = true;
+      if (state[action.payload].complete === true) {
+        state[action.payload].complete = false;
+      } else {
+        state[action.payload].complete = true;
+      }
     },
   },
 });
@@ -44,8 +48,10 @@ const store = configureStore(
 );
 
 // map State to Movie - so then we just change one movie
-const mapStateTask = (state, props) => ({ task: state[props.id] });
-const mapDispatch = { complete }; // from the action
+const mapStateTask = (state, props) => {
+  return { task: state[props.index] };
+};
+const mapDispatch = { complete, notComplete }; // from the actions in reducer
 
 const App = () => {
   return (
@@ -80,14 +86,21 @@ const CardsContainer = () => {
 const Card = connect(
   mapStateTask,
   mapDispatch
-)(({ task, complete }) => {
-  console.log("here", task);
-  // console.log(complete);
+)(({ task, complete, index }) => {
+  let completed = "not complete";
+  if (task.complete) {
+    completed = "complete";
+  }
+  let buttonTitle = "Mark As Complete";
+  if (task.complete) {
+    buttonTitle = "Mark As Not Complete";
+  }
+
   return (
     <div className="card">
       <h3>card</h3>
-      <h3>Status: {task} </h3>
-      <button onClick={() => complete()}>complete</button>
+      <h3>Status: {completed} </h3>
+      <button onClick={() => complete(index)}>{buttonTitle}</button>
     </div>
   );
 });
