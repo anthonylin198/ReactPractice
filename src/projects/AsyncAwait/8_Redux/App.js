@@ -2,10 +2,19 @@ import React from "react";
 import "../App.css";
 import allReducers from "./reducers";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
-const store = createStore(allReducers, applyMiddleware(thunk));
+import { getUsersReducer } from "./reducers/getUsersReducer";
+
+const store = createStore(
+  allReducers,
+  compose(
+    applyMiddleware(thunk),
+
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
+);
 
 const App = () => {
   return (
@@ -22,7 +31,7 @@ const UserInput = () => {
   return (
     <div>
       <input></input>
-      <button>enter</button>
+      <button onClick={() => getUsersReducer()}>enter</button>
     </div>
   );
 };

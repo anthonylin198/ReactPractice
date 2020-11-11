@@ -1,7 +1,8 @@
 export const GETFOLLOWERS = "GETFOLLOWERS";
 
-export const getFollowers = () => {
+export const getFollowers = (followers) => {
   return {
     type: "GETFOLLOWERS",
+    payload: followers,
   };
 };

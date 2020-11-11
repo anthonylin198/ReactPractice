@@ -11,8 +11,8 @@ import ReactDOM from "react-dom";
 // import App from "./projects/TasksList/Redux";
 
 // todo: ASYNC APP
-import App from "./projects/AsyncAwait/App";
-// import App from "./projects/AsyncAwait/8_Redux/App";
+// import App from "./projects/AsyncAwait/App";
+import App from "./projects/AsyncAwait/8_Redux/App";
 
 ReactDOM.render(
   <React.StrictMode>
