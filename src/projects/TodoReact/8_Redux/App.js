@@ -46,7 +46,7 @@ function List() {
   return <div>{listArr}</div>;
 }
 
-function ListItem({ item, index }) {
+const ListItem = React.memo(({ item, index }) => {
   // store the value of the list item
   const [input, updateInput] = useState("");
   console.log(input);
@@ -64,6 +64,6 @@ function ListItem({ item, index }) {
       </div>
     </div>
   );
-}
+});
 
 export default App;
