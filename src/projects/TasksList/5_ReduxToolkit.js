@@ -7,7 +7,7 @@ install reduxjs/toolki and react-redux
 import React, { useState } from "react";
 import "./App.css";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { connect, Provider } from "react-redux";
+import { connect, Provider, useSelector } from "react-redux";
 
 const tasksList = [
   { title: 1, complete: false },

@@ -37,14 +37,14 @@ const UserInput = () => {
   );
 };
 
-function List() {
+const List = React.memo(() => {
   const listItems = useSelector((state) => state.list);
 
   const listArr = listItems.map((item, i) => {
     return <ListItem item={item} index={i} key={i} />;
   });
   return <div>{listArr}</div>;
-}
+});
 
 const ListItem = React.memo(({ item, index }) => {
   // store the value of the list item
