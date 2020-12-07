@@ -15,31 +15,10 @@ import ReactDOM from "react-dom";
 
 // todo: ASYNC APP
 // import App from "./projects/AsyncAwait/App";
-// import App from "./projects/AsyncAwait/8_Redux/App";
+import App from "./projects/AsyncAwait/8_Redux/App";
 
 // todo: GRAPHQL 00 look at the config
-import App from "./projects/SpaceXGraphQL/SpaceX";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { gql } from "@apollo/client";
-
-const client = new ApolloClient({
-  uri: "https://api.spacex.land/graphql/",
-  cache: new InMemoryCache(),
-});
-
-// const client = ...
-
-client
-  .query({
-    query: gql`
-      query GetRates {
-        rates(currency: "USD") {
-          currency
-        }
-      }
-    `,
-  })
-  .then((result) => console.log(result));
+// import App from "./projects/SpaceXGraphQL/SpaceX";
 
 ReactDOM.render(
   <React.StrictMode>
