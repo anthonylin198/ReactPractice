@@ -19,6 +19,27 @@ import ReactDOM from "react-dom";
 
 // todo: GRAPHQL 00 look at the config
 import App from "./projects/SpaceXGraphQL/SpaceX";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { gql } from "@apollo/client";
+
+const client = new ApolloClient({
+  uri: "https://api.spacex.land/graphql/",
+  cache: new InMemoryCache(),
+});
+
+// const client = ...
+
+client
+  .query({
+    query: gql`
+      query GetRates {
+        rates(currency: "USD") {
+          currency
+        }
+      }
+    `,
+  })
+  .then((result) => console.log(result));
 
 ReactDOM.render(
   <React.StrictMode>
