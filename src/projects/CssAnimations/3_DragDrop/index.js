@@ -11,7 +11,7 @@ const App = () => {
   console.log(list);
 
   const notStartedList = list[0].map((item, i) => {
-    return <div key={i}>{item}</div>;
+    return <Card item={item} key={i} />;
   });
   const inProgressList = list[1].map((item, i) => {
     return <div key={i}>{item}</div>;
@@ -37,6 +37,10 @@ const App = () => {
       </div>
     </div>
   );
+};
+
+const Card = ({ item }) => {
+  return <div className="itemContainer">{item}</div>;
 };
 
 export default App;
