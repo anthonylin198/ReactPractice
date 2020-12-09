@@ -21,7 +21,10 @@ import ReactDOM from "react-dom";
 // import App from "./projects/SpaceXGraphQL/SpaceX";
 
 // todo: CSS Animations
-import App from "./projects/CssAnimations/1_BoxAnimation";
+// import App from "./projects/CssAnimations/1_BoxAnimation";
+
+// todo: Drag and Drop
+import App from "./projects/CssAnimations/3_DragDrop";
 
 ReactDOM.render(
   <React.StrictMode>
