@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "./style.css";
 
-import Card from "./components/Card";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
-// Drag and Drop
-import { DnDProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import Card from "./components/Card";
+import { ProvidedRequiredArgumentsOnDirectivesRule } from "graphql/validation/rules/ProvidedRequiredArgumentsRule";
 
 const App = () => {
   const [list, setList] = useState([
@@ -26,24 +25,24 @@ const App = () => {
     return <Card item={item} key={i} />;
   });
   return (
-    <div className="container">
-      {/* <DnDProvider backend={HTML5Backend}> */}
-      <div className="boxesContainer">
-        <div className="BoxContainer">
-          <h1>Not Started</h1>
-          <div>{notStartedList}</div>
-        </div>
-        <div className="BoxContainer">
-          <h1>In Progress</h1>
-          <div>{inProgressList}</div>
-        </div>
-        <div className="BoxContainer">
-          <h1>Completed</h1>
-          <div>{completedList}</div>
+    <DragDropContext>
+      <div className="container">
+        <div className="boxesContainer">
+          <div className="BoxContainer">
+            <h1>Not Started</h1>
+            <div>{notStartedList}</div>
+          </div>
+          <div className="BoxContainer">
+            <h1>In Progress</h1>
+            <div>{inProgressList}</div>
+          </div>
+          <div className="BoxContainer">
+            <h1>Completed</h1>
+            <div>{completedList}</div>
+          </div>
         </div>
       </div>
-      {/* </DnDProvider> */}
-    </div>
+    </DragDropContext>
   );
 };
 
