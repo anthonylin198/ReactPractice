@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./style.css";
+// https://www.youtube.com/watch?v=aYZRRyukuIw
 
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import Card from "./components/Card";
-import { ProvidedRequiredArgumentsOnDirectivesRule } from "graphql/validation/rules/ProvidedRequiredArgumentsRule";
 
 const App = () => {
   const [list, setList] = useState([
@@ -15,9 +15,6 @@ const App = () => {
 
   console.log(list);
 
-  const notStartedList = list[0].map((item, i) => {
-    return <Card item={item} key={i} />;
-  });
   const inProgressList = list[1].map((item, i) => {
     return <Card item={item} key={i} />;
   });
@@ -30,7 +27,27 @@ const App = () => {
         <div className="boxesContainer">
           <div className="BoxContainer">
             <h1>Not Started</h1>
-            <div>{notStartedList}</div>
+            <Droppable droppableId="notStarted">
+              {(provided) => (
+                <div {...provided.droppableProps} ref={provided.innerRef}>
+                  {list[0].map((item, index) => {
+                    return (
+                      <Draggable key={index} draggableId={item} index={index}>
+                        {(provided) => (
+                          <li
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <p>{item}</p>
+                          </li>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                </div>
+              )}
+            </Droppable>
           </div>
           <div className="BoxContainer">
             <h1>In Progress</h1>
