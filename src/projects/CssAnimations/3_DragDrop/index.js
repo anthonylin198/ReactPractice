@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import "./style.css";
 
+import Card from "./components/Card";
+
+// Drag and Drop
+import { DnDProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 const App = () => {
   const [list, setList] = useState([
     ["item1", "item2", "item3", "item4"],
@@ -14,13 +20,14 @@ const App = () => {
     return <Card item={item} key={i} />;
   });
   const inProgressList = list[1].map((item, i) => {
-    return <div key={i}>{item}</div>;
+    return <Card item={item} key={i} />;
   });
   const completedList = list[2].map((item, i) => {
-    return <div key={i}>{item}</div>;
+    return <Card item={item} key={i} />;
   });
   return (
     <div className="container">
+      {/* <DnDProvider backend={HTML5Backend}> */}
       <div className="boxesContainer">
         <div className="BoxContainer">
           <h1>Not Started</h1>
@@ -35,12 +42,9 @@ const App = () => {
           <div>{completedList}</div>
         </div>
       </div>
+      {/* </DnDProvider> */}
     </div>
   );
-};
-
-const Card = ({ item }) => {
-  return <div className="itemContainer">{item}</div>;
 };
 
 export default App;
