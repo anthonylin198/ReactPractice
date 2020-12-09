@@ -15,10 +15,13 @@ import ReactDOM from "react-dom";
 
 // todo: ASYNC APP
 // import App from "./projects/AsyncAwait/App";
-import App from "./projects/AsyncAwait/8_Redux/App";
+// import App from "./projects/AsyncAwait/8_Redux/App";
 
 // todo: GRAPHQL 00 look at the config
 // import App from "./projects/SpaceXGraphQL/SpaceX";
+
+// todo: CSS Animations
+import App from "./projects/CssAnimations/1_BoxAnimation";
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,0 +1,42 @@
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boxContainer {
+  background: #f9f9f9;
+  height: 400px;
+  width: 400px;
+}
+
+.box {
+  background-color: red;
+  height: 50%;
+  width: 50%;
+  animation: left-to-right 1s ease-in forwards infinite alternate;
+}
+
+.boxContainer:hover .box {
+  /* animation: left-to-right 1s ease-in forwards infinite alternate; */
+  animation-play-state: paused;
+}
+
+/* todo: for animation */
+@keyframes left-to-right {
+  0% {
+    background-color: red;
+    transform: translateX(0);
+  }
+  33% {
+    transform: translateY(100%);
+  }
+  66% {
+    transform: translateX(100%) translateY(100%);
+  }
+  100% {
+    background-color: green;
+    transform: translateX(100%);
+  }
+}

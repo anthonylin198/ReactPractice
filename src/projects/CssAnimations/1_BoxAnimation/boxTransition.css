@@ -1,0 +1,29 @@
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boxContainer {
+  background: #f9f9f9;
+  height: 400px;
+  width: 400px;
+}
+
+.box {
+  background-color: red;
+  height: 50%;
+  width: 50%;
+  /* todo you can select what to have transitions on. Transition must be seet on child, not modified */
+  /* transition: transform 1s; */
+  /* transition: 1s; */
+  transition: transform 1s ease-in-out;
+  /* transition: transform 1s linear; */
+  /* transition: transform 1s cubic-bezier(0.42, 0, 1, 1.57) 3s; */
+}
+
+.boxContainer:hover .box {
+  background-color: green;
+  transform: translateX(100%);
+}
