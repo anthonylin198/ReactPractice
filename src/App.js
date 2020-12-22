@@ -1,12 +1,23 @@
 import "./App.css";
 
+import Menu from "./components/menu";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import TodoList from "./pages/TodoList";
+import Quiz from "./pages/TodoList";
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>React App Home</h1>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div>
+        <Menu />
+
+        <Switch>
+          <Route path="/" exact component={TodoList} />
+          <Route path="quiz" exact component={Quiz} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
