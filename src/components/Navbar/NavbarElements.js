@@ -1,44 +1,51 @@
 import styled from "styled-components";
-import { FaMagento } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
-import { Container } from "../globalStyles";
+import { findByLabelText } from "@testing-library/react";
 
 export const Nav = styled.nav`
-  background: #101522;
+  background: #000;
   height: 80px;
+  /* margin-top: -80px; */
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 10;
+
+  @media screen and (max-width: 960px) {
+    transition: 0.8 all ease;
+  }
 `;
 
-export const NavbarContainer = styled(Container)`
+export const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   height: 80px;
-  ${Container}
+  z-index: 1;
+  width: 100%;
+  padding: 0 24px;
+  max-width: 1100px;
 `;
 
 export const NavLogo = styled(Link)`
-  color: #fff;
+  color: white;
   justify-self: flex-start;
   cursor: pointer;
-  text-decoration: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
-`;
-
-export const NavIcon = styled(FaMagento)`
-  margin-right: 0.5rem;
+  margin-left: 24px;
+  font-weight: bold;
+  text-decoration: none;
 `;
 
 export const MobileIcon = styled.div`
   display: none;
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 768px) {
+    color: #fff;
     display: block;
     position: absolute;
     top: 0;
@@ -54,42 +61,15 @@ export const NavMenu = styled.ul`
   align-items: center;
   list-style: none;
   text-align: center;
-  @media screen and (max-width: 960px) {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 90vh;
-    position: absolute;
-    top: 80px;
-    left: ${({ click }) => (click ? 0 : "-100%")};
-    opacity: 1;
-    transition: all 0.5s ease;
-    background: #101522;
+  margin-right: 22px;
+
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 `;
 
 export const NavItem = styled.li`
   height: 80px;
-  border-bottom: 2px solid transparent;
-  &:hover {
-    border-bottom: 2px solid #4b59f7;
-  }
-  @media screen and (max-width: 960px) {
-    width: 100%;
-    &:hover {
-      border: none;
-    }
-  }
-`;
-
-export const NavItemBtn = styled.li`
-  @media screen and (max-width: 960px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 120px;
-  }
 `;
 
 export const NavLinks = styled(Link)`
@@ -97,28 +77,40 @@ export const NavLinks = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
   height: 100%;
-  @media screen and (max-width: 960px) {
-    text-align: center;
-    padding: 2rem;
-    width: 100%;
-    display: table;
-    &:hover {
-      color: #4b59f7;
-      transition: all 0.3s ease;
-    }
+  cursor: pointer;
+
+  &.active {
+    border-bottom: 3px solid #01bf71;
+  }
+`;
+
+export const NavBtn = styled.nav`
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 `;
 
 export const NavBtnLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  padding: 8px 16px;
-  height: 100%;
-  width: 100%;
-  border: none;
+  border-radius: 50px;
+  background: #01bf71;
+  white-space: nowrap;
+  padding: 10px 22px;
+  color: #010606;
+  font-size: 16px;
   outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+    color: #010606;
+  }
 `;
