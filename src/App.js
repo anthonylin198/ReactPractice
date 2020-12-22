@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import TodoList from "./pages/TodoList";
 import Quiz from "./pages/Quiz";
+import Components from "./pages/Components";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={TodoList} />
           <Route path="/quiz" exact component={Quiz} />
+          <Route path="/components" exact component={Components} />
         </Switch>
       </div>
     </BrowserRouter>
