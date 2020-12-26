@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 import { Link } from "react-router-dom";
-import { findByLabelText } from "@testing-library/react";
 
 export const Nav = styled.nav`
   background: #000;
