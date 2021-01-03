@@ -1,5 +1,6 @@
 import React from "react";
 
+// Quiz with inputs, timer, etc...
 const Quiz = () => {
   return (
     <div>

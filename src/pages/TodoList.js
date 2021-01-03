@@ -1,5 +1,6 @@
 import React from "react";
 
+// TodoList with drag and drop rerendering
 const TodoList = () => {
   return (
     <div>
